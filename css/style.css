@@ -5,12 +5,16 @@
   margin: 5vh auto;
 }
 
-.leaflet-popup-content ul {
+ul.public_transport {
   padding-left: 0;
   list-style-type: none;
   margin-top: 0.5em;
   max-height: 16em;
   overflow: scroll;
+}
+
+ul.bikesharing {
+  padding-left: 0;
 }
 
 .leaflet-popup-content li {
@@ -28,12 +32,16 @@
 }
 
 .time_nok .delay {
-	float: right;
-	margin: 0 5px;
+  float: right;
+  margin: 0 5px;
 }
 
 .platform {
-	float: right;
-	color: #808080;
-	margin: 0 5px;
+  float: right;
+  color: #808080;
+  margin: 0 5px;
+}
+
+.chargingstate {
+  float: right;
 }
