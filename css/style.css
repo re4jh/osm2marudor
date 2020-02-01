@@ -28,5 +28,12 @@
 }
 
 .time_nok .delay {
-  float: right;
+	float: right;
+	margin: 0 5px;
+}
+
+.platform {
+	float: right;
+	color: #808080;
+	margin: 0 5px;
 }
