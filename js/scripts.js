@@ -4,7 +4,7 @@ function onMarkerClick(e, values) {
   $.getJSON("marudor_cache/hafasDepartureStationBoard.php?station=" + values.id, function(json) {
     popup_content = "<b>" + values.name + ":</b>";
     departure_data = json;
-    popup_content += '<ul>';
+    popup_content += '<ul class="public_transport">';
     max = 100;
     if (departure_data.length < max) {
       max = departure_data.length;
@@ -38,5 +38,37 @@ function onMarkerClick(e, values) {
     }
     popup_content += '</ul>';
     popup.setContent(popup_content);
+  });
+}
+
+function onBikeMarkerClick(e, values) {
+  var popup = e.target.getPopup();
+  popup_content = "<b>" + values.name + ":</b>";
+  $.getJSON("https://mobil.tws.de/mbroker/rest/areainformation/" + values.id, function(jsontws) {
+    station_data = jsontws;
+    console.log(station_data.sharingAvailability.vehicles.length);
+    if (station_data.sharingAvailability && station_data.sharingAvailability.vehicles && station_data.sharingAvailability.vehicles.length > 0) {
+      popup_content += '<ul class="bikesharing">';
+      max = 100;
+      if (station_data.sharingAvailability.vehicles.length < max) {
+        max = station_data.sharingAvailability.vehicles.length;
+      }
+      for (i = 0; i < max; i++) {
+        var bike_data = station_data.sharingAvailability.vehicles[i];
+        type = '';
+        if (bike_data.vehicleType = 'bike') {
+          type += '&#128690;';
+        }
+
+        chargingstate = '?';
+        if (bike_data.stateOfCharge && $.isNumeric(bike_data.stateOfCharge)) {
+          chargingstate = bike_data.stateOfCharge + ' %';
+        }
+        popup_content += '<li>' + type + '<span class="chargingstate">' + chargingstate + '</span></li>';
+      }
+      popup_content += '</ul>';
+    }
+    popup.setContent(popup_content);
+
   });
 }
