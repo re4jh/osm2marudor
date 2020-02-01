@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>Leaflet/OSM/Marudor Demo</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="/node_modules/leaflet/dist/leaflet.css">
+	<link rel="stylesheet" href="/css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+</head>
+
+<body>
+	<div id="mapid" style=""></div>
+	<script>
+		var markerid = 0;
+		$(function() {
+			// Get your License
+			$.ajaxSetup({async: false});
+			var tf_key;
+			$.getJSON("./json_data/api_key_thunderforest.json", function(json) {
+				tf_key = json.apikey;
+			});
+			$.ajaxSetup({async: true});
+
+			var mymap = L.map('mapid').setView([47.780337, 9.589549], 15);
+
+			L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=' + tf_key, {
+				maxZoom: 18,
+				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+					'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+					'Imagery © <a href="https://www.thunderforest.com/">Thunderforest</a>',
+				id: 'mapbox/streets-v11'
+			}).addTo(mymap);
+
+			$.getJSON("./json_data/stops.json", function(json) {
+				$.each(json, function(index, value) {
+					console.log('My array has at position ' + index + ', this value: ' + value.lat);
+					new_marker = L.marker([value.lat, value.lng]).addTo(mymap)
+						.bindPopup("<b>" + value.name + "</b>")
+						.on('click', function(e) {
+							onMarkerClick(e, value)
+						});
+				});
+			});
+
+			function onMarkerClick(e, values) {
+				var popup = e.target.getPopup();
+
+				$.getJSON("https://marudor.de/api/hafas/v1/departureStationBoard?station=" + values.id + "&callback=xyz", function(json) {
+					popup_content = "<b>" + values.name + ":</b>";
+					departure_data = json;
+					popup_content += '<ul>';
+					max = 10;
+					if (departure_data.length < 10) {
+						max = departure_data.length;
+					}
+					for (i = 0; i <= max; i++) {
+						var dep_date = new Date(departure_data[i].departure.scheduledTime);
+						hours = "0" + dep_date.getHours();
+						minutes = "0" + dep_date.getMinutes();
+						fTime = hours.substr(-2) + ':' + minutes.substr(-2);
+						cssclass = "time_ok";
+						delaytxt = '';
+						if (departure_data[i].departure.delay) {
+							cssclass = "time_nok";
+							delaytxt = '<span class="delay">&#8986; +' + departure_data[i].departure.delay + '</span>';
+						}
+
+						popup_content += '<li class="' + cssclass + '">';
+						popup_content += '<span class="time">' + fTime + '</span>: ';
+						popup_content += departure_data[i].finalDestination;
+						popup_content += delaytxt;
+						popup_content += '</li>';
+					}
+					popup_content += '</ul>';
+					popup.setContent(popup_content);
+				});
+			}
+		});
+	</script>
+</body>
+</html>
