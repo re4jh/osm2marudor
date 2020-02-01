@@ -39,13 +39,61 @@
     "lng": 9.605729,
     "name": "Meersburger Brücke",
     "id": "000492908"
+  },
+  {
+    "lat": 47.781559,
+    "lng": 9.581243,
+    "name": "Karl-Erb-Ring",
+    "id": "000492917"
+  },
+  {
+    "lat": 47.783869,
+    "lng": 9.578348,
+    "name": "Hochbergstraße",
+    "id": "000492918"
+  },
+  {
+    "lat": 47.784858,
+    "lng": 9.573008,
+    "name": "Rümelinstraße",
+    "id": "000492919"
+  },
+  {
+    "lat": 47.782314,
+    "lng": 9.571148,
+    "name": "Huberesch",
+    "id": "492920"
+  },
+  {
+    "lat": 47.779752,
+    "lng": 9.571543,
+    "name": "Rümelinplatz",
+    "id": "493007"
+  },
+  {
+    "lat": 47.778485,
+    "lng": 9.576487,
+    "name": "Jugendtreff Hochberg",
+    "id": "492994"
+  },
+  {
+    "lat": 47.776723,
+    "lng": 9.57246,
+    "name": "Königin-Katharina-Str.",
+    "id": "493008"
+  },
+  {
+    "lat": 47.781298,
+    "lng": 9.610269,
+    "name": "Heilig-Geist-Spital",
+    "id": "492907"
+  },
+  {
+    "lat": 47.783159,
+    "lng": 9.613819,
+    "name": "Marienplatz",
+    "id": "492884"
   }
-
-
-
-
-
-
 
 
 
