@@ -1,25 +1,25 @@
 [{
     "lat": 47.78473,
     "lng": 9.60693,
-    "name": "BikeSharing Bahnhof",
+    "name": "BikeSharing<br>Bahnhof",
     "id": "23324"
   },
   {
     "lat": 47.807041,
     "lng": 9.639088,
-    "name": "BikeSharing Stadtgarten",
+    "name": "BikeSharing<br>Stadtgarten",
     "id": "23325"
   },
   {
     "lat": 47.78076,
     "lng": 9.588263,
-    "name": "BikeSharing Mittelöschplatz",
+    "name": "BikeSharing<br>Mittelöschplatz",
     "id": "23326"
   },
   {
     "lat": 47.802202,
     "lng": 9.542214,
-    "name": "BikeSharing Schmalegg",
+    "name": "BikeSharing<br>Schmalegg",
     "id": "23327"
   }
 ]
