@@ -45,12 +45,17 @@
 					iconSize: [35, 41]
 				}
 			});
-
 			var greenBikeIcon = new BikeIcon();
-			L.marker([47.78473, 9.60693], { icon: greenBikeIcon }).bindPopup("BikeSharing Bahnhof").addTo(mymap);
-			L.marker([47.807041, 9.639088], { icon: greenBikeIcon }).bindPopup("BikeSharing Stadtgarten").addTo(mymap);
-			L.marker([47.78076, 9.588263], { icon: greenBikeIcon }).bindPopup("BikeSharing Mittelöschplatz").addTo(mymap);
-			L.marker([47.802202, 9.542214], { icon: greenBikeIcon }).bindPopup("BikeSharing Schmalegg").addTo(mymap);
+
+			$.getJSON("./json_data/bikesharing.json", function(json) {
+				$.each(json, function(index, value) {
+					new_marker = L.marker([value.lat, value.lng], { icon: greenBikeIcon }).addTo(mymap)
+						.bindPopup("<b>" + value.name + "</b>")
+						.on('click', function(e) {
+							onBikeMarkerClick(e, value)
+						});
+				});
+			});
 
 			$.getJSON("./json_data/stops.json", function(json) {
 				$.each(json, function(index, value) {
