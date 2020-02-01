@@ -40,7 +40,6 @@
 
 			$.getJSON("./json_data/stops.json", function(json) {
 				$.each(json, function(index, value) {
-					console.log('My array has at position ' + index + ', this value: ' + value.lat);
 					new_marker = L.marker([value.lat, value.lng]).addTo(mymap)
 						.bindPopup("<b>" + value.name + "</b>")
 						.on('click', function(e) {
