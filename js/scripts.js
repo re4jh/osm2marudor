@@ -62,7 +62,7 @@ function onBikeMarkerClick(e, values) {
 
         chargingstate = '?';
         if (bike_data.stateOfCharge && $.isNumeric(bike_data.stateOfCharge)) {
-          chargingstate = bike_data.stateOfCharge + ' %';
+          chargingstate = '&#128267; ' + bike_data.stateOfCharge + ' %';
         }
         popup_content += '<li>' + type + '<span class="chargingstate">' + chargingstate + '</span></li>';
       }

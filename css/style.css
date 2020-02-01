@@ -23,6 +23,10 @@ ul.bikesharing {
   width: 100%;
 }
 
+.bikesharing li {
+  font-size: 1.25em;
+}
+
 .time_ok {
   color: green;
 }
