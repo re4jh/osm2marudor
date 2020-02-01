@@ -11,6 +11,12 @@
   margin-top: 0.5em;
 }
 
+.leaflet-popup-content li {
+	border-bottom: 1px dotted #c0c0c0;
+	display: inline-block;
+	width: 100%;
+}
+
 .time_ok {
   color: green;
 }
