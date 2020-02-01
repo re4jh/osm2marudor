@@ -93,11 +93,41 @@
     "lng": 9.613819,
     "name": "Marienplatz",
     "id": "492884"
+  },
+  {
+    "lat": 47.784427,
+    "lng": 9.615869,
+    "name": "Frauentor",
+    "id": "000492883"
+  },
+  {
+    "lat": 47.786971,
+    "lng": 9.618368,
+    "name": "Gymnasien",
+    "id": "000492882"
+  },
+  {
+    "lat": 47.782934,
+    "lng": 9.615788,
+    "name": "Wilhelmstraße",
+    "id": "000492944"
+  },
+  {
+    "lat": 47.716729,
+    "lng": 9.388613,
+    "name": "Markdorf",
+    "id": "008003871"
+  },
+  {
+    "lat": 47.713592,
+    "lng": 9.397773,
+    "name": "Gewerbegebiet",
+    "id": "000491034"
+  },
+  {
+    "lat": 47.653166,
+    "lng": 9.473471,
+    "name": "Friedrichshafen Stadt",
+    "id": "008000112"
   }
-
-
-
-
-
-
 ]
