@@ -44,7 +44,7 @@ function onMarkerClick(e, values) {
 function onBikeMarkerClick(e, values) {
   var popup = e.target.getPopup();
   popup_content = "<b>" + values.name + ":</b>";
-  $.getJSON("https://mobil.tws.de/mbroker/rest/areainformation/" + values.id, function(jsontws) {
+  $.getJSON("bike_cache/tws.php?area=" + values.id, function(jsontws) {
     station_data = jsontws;
     console.log(station_data.sharingAvailability.vehicles.length);
     if (station_data.sharingAvailability && station_data.sharingAvailability.vehicles && station_data.sharingAvailability.vehicles.length > 0) {
