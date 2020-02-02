@@ -1,0 +1,4 @@
+# password protect single file
+<Files api_key_thunderforest.json>
+Deny from all
+</Files>
