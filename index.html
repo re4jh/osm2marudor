@@ -21,13 +21,6 @@
 	<script>
 		var markerid = 0;
 		$(function() {
-			// Get your License
-			$.ajaxSetup({async: false});
-			var tf_key;
-			$.getJSON("./json_data/api_key_thunderforest.json", function(json) {
-				tf_key = json.apikey;
-			});
-			$.ajaxSetup({async: true});
 
 			var mymap = L.map('mapid').setView([47.780337, 9.589549], 14);
 
