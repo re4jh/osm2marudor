@@ -17,11 +17,11 @@
 </head>
 
 <body>
+	<h1>Public Transport Departures</h1>
 	<div id="mapid" style=""></div>
 	<script>
-		var markerid = 0;
 		$(function() {
-
+			var aStopMarker = [];
 			var mymap = L.map('mapid').setView([47.780337, 9.589549], 14);
 
 			L.tileLayer('map_cache/transport.php?z={z}&x={x}&y={y}', {
@@ -53,11 +53,39 @@
 
 			$.getJSON("./json_data/stops.json", function(json) {
 				$.each(json, function(index, value) {
-					new_marker = L.marker([value.lat, value.lng]).addTo(mymap)
+					aStopMarker[parseInt(value.id)] = L.marker([value.lat, value.lng]).addTo(mymap)
 						.bindPopup("<b>" + value.name + "</b>")
 						.on('click', function(e) {
 							onMarkerClick(e, value)
 						});
+				});
+			});
+
+			mymap.on('moveend', function(e) {
+				new_center = mymap.getCenter();
+				url = 'marudor_cache/geo.php?lat=' + new_center.lat + '&lng=' + new_center.lng;
+				$.getJSON(url, function(json) {
+					$.each(json, function(index, value) {
+						if (index > 10) {
+							return true;
+						}
+						if (aStopMarker[parseInt(value.id)] == undefined) {
+							station_url = 'marudor_cache/station.php?id=' + value.id;
+							$.getJSON(station_url, function(station_json) {
+								let stopvalues = {
+									'id': station_json.id,
+									'name': station_json.title,
+									'lat': station_json.location.latitude,
+									'lng': station_json.location.longitude
+								};
+								aStopMarker[parseInt(stopvalues.id)] = L.marker([stopvalues.lat, stopvalues.lng]).addTo(mymap)
+									.bindPopup("<b>" + stopvalues.name + "</b>")
+									.on('click', function(e) {
+										onMarkerClick(e, stopvalues)
+									});
+							});
+						}
+					});
 				});
 			});
 		});
