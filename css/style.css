@@ -23,6 +23,17 @@ ul.bikesharing {
   width: 100%;
 }
 
+.leaflet-popup-content .loading {
+  font-size: 200%;
+  text-align: center;
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+}
+
 .bikesharing li {
   font-size: 1.25em;
 }
@@ -48,4 +59,23 @@ ul.bikesharing {
 
 .chargingstate {
   float: right;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

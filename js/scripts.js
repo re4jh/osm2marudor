@@ -1,8 +1,9 @@
 function onMarkerClick(e, values) {
   var popup = e.target.getPopup();
+  popup.setContent("<b>" + values.name + ":</b><br/><span class='loading'>&#9203;</span>")
 
   $.getJSON("marudor_cache/hafasDepartureStationBoard.php?station=" + values.id, function(json) {
-    popup_content = "<b>" + values.name + ":</b>";
+    popup_content = "<b>" + values.name + "</b>";
     departure_data = json;
     popup_content += '<ul class="public_transport">';
     max = 100;
@@ -37,14 +38,15 @@ function onMarkerClick(e, values) {
       popup_content += '</li>';
     }
     popup_content += '</ul>';
-    popup.setContent(popup_content);
   });
 }
 
 function onBikeMarkerClick(e, values) {
   var popup = e.target.getPopup();
-  popup_content = "<b>" + values.name + ":</b>";
+  popup.setContent("<b>" + values.name + ":</b><br/><span class='loading'>&#9203;</span>")
+
   $.getJSON("bike_cache/tws.php?area=" + values.id, function(jsontws) {
+    popup_content = "<b>" + values.name + ":</b>";
     station_data = jsontws;
     console.log(station_data.sharingAvailability.vehicles.length);
     if (station_data.sharingAvailability && station_data.sharingAvailability.vehicles && station_data.sharingAvailability.vehicles.length > 0) {
