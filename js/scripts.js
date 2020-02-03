@@ -38,6 +38,7 @@ function onMarkerClick(e, values) {
       popup_content += '</li>';
     }
     popup_content += '</ul>';
+    popup.setContent(popup_content);
   });
 }
 
