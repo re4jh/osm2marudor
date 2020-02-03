@@ -7,8 +7,6 @@ $x = intval($_GET['x']);
 $y = intval($_GET['y']);
 $z = intval($_GET['z']);
 
-
-
 $sCachePath = "cached/${z}_${x}_$y.png";
 
 if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
@@ -39,7 +37,7 @@ if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
     }
 }
 
-$exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl * 60) . " GMT";
+$exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl) . " GMT";
 $mod_gmt = gmdate("D, d M Y H:i:s", filemtime($sCachePath)) . " GMT";
 header("Expires: " . $exp_gmt);
 header("Last-Modified: " . $mod_gmt);

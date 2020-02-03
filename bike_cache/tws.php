@@ -25,11 +25,11 @@ if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
     }
 }
 
-$exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl * 60) . " GMT";
+$exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl) . " GMT";
 $mod_gmt = gmdate("D, d M Y H:i:s", filemtime($sCachePath)) . " GMT";
 header("Expires: " . $exp_gmt);
 header("Last-Modified: " . $mod_gmt);
-header("Cache-Control: public, max-age=" . $ttl * 60);
+header("Cache-Control: public, max-age=" . $iTtl * 60);
 // for MSIE 5
 header("Cache-Control: pre-check=" . $iTtl * 60, false);
 header('Content-Type: application/json; charset=utf-8');
