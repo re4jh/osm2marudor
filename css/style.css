@@ -1,15 +1,16 @@
 h1 {
-  margin: 2.5vh auto;
-  width: 90vw;
-  font-family: Arial, sans-serif;
-  font-size: 1.5em;
+	margin: 2.5vh auto;
+	width: 95vw;
+	font-family: Arial, sans-serif;
+	font-size: 1.5em;
+	padding: 0;
 }
 
 #mapid {
-  width: 90vw;
-  height: 85vh;
-  position: relative;
-  margin: 2.5vh 5vh auto;
+	width: 95vw;
+	height: 87.5vh;
+	position: relative;
+	margin: 2.5vh auto;
 }
 
 ul.public_transport {
