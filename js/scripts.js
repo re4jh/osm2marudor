@@ -49,7 +49,6 @@ function onBikeMarkerClick(e, values) {
   $.getJSON("bike_cache/tws.php?area=" + values.id, function(jsontws) {
     popup_content = "<b>" + values.name + ":</b>";
     station_data = jsontws;
-    console.log(station_data.sharingAvailability.vehicles.length);
     if (station_data.sharingAvailability && station_data.sharingAvailability.vehicles && station_data.sharingAvailability.vehicles.length > 0) {
       popup_content += '<ul class="bikesharing">';
       max = 100;
