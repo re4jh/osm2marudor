@@ -21,8 +21,21 @@
 	<div id="mapid" style=""></div>
 	<script>
 		$(function() {
+			//location.hash = 'map=' + new_zoom + '/' + new_center.lat + '/' + new_center.lng
+			var load_lng = 47.780337;
+			var load_lat = 9.589549;
+			var load_zoom = 14;
+
+			hash = location.hash;
+			if (hash.indexOf('#map=') !== -1) {
+				var hash_parts = hash.replace('#map=', '').split("/");
+				var load_zoom = parseFloat(hash_parts[0]);
+				var load_lng = parseFloat(hash_parts[1]);
+				var load_lat = parseFloat(hash_parts[2]);
+			}
+
 			var aStopMarker = [];
-			var mymap = L.map('mapid').setView([47.780337, 9.589549], 14);
+			var mymap = L.map('mapid').setView([load_lng, load_lat], load_zoom);
 
 			L.tileLayer('map_cache/transport.php?z={z}&x={x}&y={y}', {
 				maxZoom: 18,
@@ -63,6 +76,8 @@
 
 			mymap.on('moveend', function(e) {
 				new_center = mymap.getCenter();
+				new_zoom = mymap.getZoom();
+				location.hash = 'map=' + new_zoom + '/' + new_center.lat + '/' + new_center.lng
 				url = 'marudor_cache/geo.php?lat=' + new_center.lat + '&lng=' + new_center.lng;
 				$.getJSON(url, function(json) {
 					$.each(json, function(index, value) {
