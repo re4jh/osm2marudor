@@ -4,7 +4,7 @@ $iTtl = 31622400; //1 year
 $iStation = intval($_GET['id']);
 $sCachePath = 'cached/station_' . $iStation . '.json';
 
-if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
+if (!file_exists($sCachePath) || time()-filemtime($sCachePath) >= $iTtl) {
     $ch = curl_init('https://marudor.de/api/station/v1/station/' . $iStation);
     $fp = fopen($sCachePath, "w");
     curl_setopt($ch, CURLOPT_FILE, $fp);

@@ -4,7 +4,7 @@ $iTtl = 60;
 $iStation = intval($_GET['area']);
 $sCachePath = 'cached/' . $iStation . '.json';
 
-if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
+if (!file_exists($sCachePath) || time()-filemtime($sCachePath) >= $iTtl) {
     $ch = curl_init('https://mobil.tws.de/mbroker/rest/areainformation/' . $iStation);
     $fp = fopen($sCachePath, "w");
     curl_setopt($ch, CURLOPT_FILE, $fp);

@@ -4,7 +4,7 @@ $iTtl = 60;
 $iStation = intval($_GET['station']);
 $sCachePath = 'cached/hdsb_' . $iStation . '.json';
 
-if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
+if (!file_exists($sCachePath) || time()-filemtime($sCachePath) >= $iTtl) {
     $ch = curl_init('https://marudor.de/api/hafas/v1/departureStationBoard?station=' . $iStation);
     $fp = fopen($sCachePath, "w");
     curl_setopt($ch, CURLOPT_FILE, $fp);
