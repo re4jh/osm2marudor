@@ -10,15 +10,18 @@
 
 	<link rel="stylesheet" href="css/leaflet.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-3.4.1.min.js"></script>
-	<script src="js/leaflet-1.6.0.min.js"></script>
-	<script src="js/scripts.js"></script>
+
 
 </head>
 
 <body>
 	<h1>Public Transport Departures</h1>
-	<div id="mapid" style=""></div>
+	<div id="mapid" style="">
+		<input type="button" id="btn_locate" value="&#11095;" />
+	</div>
+	<script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/leaflet-1.6.0.min.js"></script>
+	<script src="js/scripts.js"></script>
 	<script>
 		$(function() {
 			//location.hash = 'map=' + new_zoom + '/' + new_center.lat + '/' + new_center.lng
@@ -36,6 +39,21 @@
 
 			var aStopMarker = [];
 			var mymap = L.map('mapid').setView([load_lng, load_lat], load_zoom);
+
+			$("#btn_locate").click(function() {
+				locateUser(mymap);
+			});
+
+			mymap.addOneTimeEventListener('locationfound', function(e) {
+				console.log("get to located found?");
+				mymap.setView(L.latLng(e.latitude, e.longitude), 16);
+				//var geo = document.getElementById('geoB');
+				//var state = geo.classList.toggle('toggleState');
+			}, this);
+
+			mymap.on('locationerror', function(e) {
+				alert('Location Error: ' + e.message);
+			});
 
 			L.tileLayer('map_cache/transport.php?z={z}&x={x}&y={y}', {
 				maxZoom: 18,

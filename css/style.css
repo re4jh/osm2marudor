@@ -13,6 +13,19 @@ h1 {
 	margin: 2.5vh auto;
 }
 
+#btn_locate {
+	z-index: 1000;
+	position: absolute;
+	top: 1vh;
+	right: 0.5em;
+	width: 45px;
+	overflow: hidden;
+	display: block;
+	padding: 0;
+	height: 40px;
+	font-size: 22px;
+}
+
 ul.public_transport {
   padding-left: 0;
   list-style-type: none;

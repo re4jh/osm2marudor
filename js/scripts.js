@@ -74,3 +74,7 @@ function onBikeMarkerClick(e, values) {
 
   });
 }
+
+function locateUser(mymap) {
+  mymap.locate({setView: true,maxZoom: 16});
+}
