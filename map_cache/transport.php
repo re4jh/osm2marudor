@@ -1,7 +1,7 @@
 <?php
 
-// TTL: 1 Week
-$iTtl = 604800;
+// TTL: 1 Month
+$iTtl = 24 * 60 * 60 * 30;
 
 $x = intval($_GET['x']);
 $y = intval($_GET['y']);
@@ -9,7 +9,7 @@ $z = intval($_GET['z']);
 
 $sCachePath = "cached/${z}_${x}_$y.png";
 
-if (!file_exists($sCachePath) || time()-filemtime($filename) >= $iTtl) {
+if (!file_exists($sCachePath) || time()-filemtime($sCachePath) >= $iTtl) {
 
     $sApiKey = file_get_contents("../json_data/api_key_thunderforest.json");
     $aApiKey = json_decode($sApiKey, true);
@@ -41,8 +41,8 @@ $exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl) . " GMT";
 $mod_gmt = gmdate("D, d M Y H:i:s", filemtime($sCachePath)) . " GMT";
 header("Expires: " . $exp_gmt);
 header("Last-Modified: " . $mod_gmt);
-header("Cache-Control: public, max-age=" . $iTtl * 60);
+header("Cache-Control: public, max-age=" . $iTtl);
 // for MSIE 5
-header("Cache-Control: pre-check=" . $iTtl * 60, false);
+header("Cache-Control: pre-check=" . $iTtl, false);
 header('Content-Type: image/png; charset=utf-8');
 readfile($sCachePath);
