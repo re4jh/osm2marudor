@@ -37,12 +37,12 @@ if (!file_exists($sCachePath) || time()-filemtime($sCachePath) >= $iTtl) {
     }
 }
 
-$exp_gmt = gmdate("D, d M Y H:i:s", time() + $iTtl) . " GMT";
+$exp_gmt = gmdate("D, d M Y H:i:s", filemtime($sCachePath) + $iTtl) . " GMT";
 $mod_gmt = gmdate("D, d M Y H:i:s", filemtime($sCachePath)) . " GMT";
 header("Expires: " . $exp_gmt);
 header("Last-Modified: " . $mod_gmt);
 header("Cache-Control: public, max-age=" . $iTtl);
 // for MSIE 5
 header("Cache-Control: pre-check=" . $iTtl, false);
-header('Content-Type: image/png; charset=utf-8');
+header('Content-Type: image/png');
 readfile($sCachePath);
